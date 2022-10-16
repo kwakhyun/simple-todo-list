@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { todoAPI } from "../../server/api";
 import { Todo } from "../../components/main/Todo";
-import { TodoForm } from "../../components/main/TodoForm";
+import { TodoForm } from "../../components/main/Form";
+import { StyledMain } from "./styled";
 
 export const Main = () => {
   const [todos, setTodos] = useState([]);
@@ -11,8 +11,8 @@ export const Main = () => {
   const navigate = useNavigate();
 
   const handleGetTodos = () => {
-    todoAPI.getTodos().then((response) => {
-      setTodos(response.data);
+    todoAPI.getTodos().then(({ data }) => {
+      setTodos(data);
     });
   };
 
@@ -27,71 +27,38 @@ export const Main = () => {
     } else {
       navigate("/");
     }
-  }, [navigate, todos]);
+  }, [navigate]);
 
   return (
     <StyledMain>
       <button className="logout" onClick={handleLogout}>
         Logout
       </button>
+
       <div className="todo-form">
-        <h2>wanted-pre-onboarding todo-list</h2>
-        <TodoForm setTodos={setTodos} />
+        <h2>To-do list</h2>
+        <TodoForm todos={todos} setTodos={setTodos} />
       </div>
+
       <div className="todo-list">
-        {todos.length > 0 &&
-          todos?.map((todo) => {
-            return (
-              <Todo key={todo.id} todo={todo} handleGetTodos={handleGetTodos} />
-            );
-          })}
+        {todos.filter((v) => v.isCompleted === false).length > 0 && (
+          <h2>Not done yet..</h2>
+        )}
+        {todos?.map((todo) => {
+          return !todo.isCompleted ? (
+            <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos} />
+          ) : null;
+        })}
+
+        {todos.filter((v) => v.isCompleted === true).length > 0 && (
+          <h2>Work done!</h2>
+        )}
+        {todos?.map((todo) => {
+          return todo.isCompleted ? (
+            <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos} />
+          ) : null;
+        })}
       </div>
     </StyledMain>
   );
 };
-
-const StyledMain = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100vh;
-  background-color: #f5f5f5;
-
-  .logout {
-    width: 100px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: #e5e5e5;
-    margin: 10px 0;
-  }
-
-  .todo-form {
-    width: 100%;
-    height: 100px;
-    background-color: #fff;
-
-    h2 {
-      text-align: center;
-      margin: 10px 0;
-    }
-  }
-
-  .todo-list {
-    width: 100%;
-    height: 100%;
-    margin-top: 100px;
-    background-color: #fff;
-  }
-
-  .todo-list > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    border-bottom: 1px solid #e5e5e5;
-    padding: 0 10px;
-  }
-`;

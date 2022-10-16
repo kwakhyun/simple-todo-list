@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authAPI } from "../../server/api";
-import { StyledLogin } from "./styled";
+import { StyledAuth } from "./styled";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/todo");
     }
-  });
+  }, [navigate]);
 
   const emailRegExp =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -44,9 +45,10 @@ export const Login = () => {
   };
 
   return (
-    <StyledLogin>
-      <span>wanted pre onboarding to-do list</span>
+    <StyledAuth>
+      <p>To-do list made by kwakhyun</p>
       <form onSubmit={(e) => handleLogin(e)}>
+        <label>Email</label>
         <input
           type={"text"}
           value={email}
@@ -54,6 +56,7 @@ export const Login = () => {
           placeholder="이메일 입력"
           required
         />
+        <label>Password</label>
         <input
           type={"password"}
           value={password}
@@ -68,6 +71,6 @@ export const Login = () => {
         )}
       </form>
       <span onClick={() => navigate("/signup")}>회원가입하기</span>
-    </StyledLogin>
+    </StyledAuth>
   );
 };

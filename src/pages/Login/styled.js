@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledLogin = styled.div`
+export const StyledAuth = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +8,7 @@ export const StyledLogin = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: #f5f5f5;
+
   form {
     display: flex;
     flex-direction: column;
@@ -30,6 +31,7 @@ export const StyledLogin = styled.div`
         outline: none;
       }
     }
+
     button {
       width: 200px;
       height: 30px;
@@ -55,7 +57,19 @@ export const StyledLogin = styled.div`
         cursor: not-allowed;
       }
     }
+
+    .error-message {
+      display: none;
+      color: #ff0000;
+      font-size: 12px;
+    }
   }
+
+  p {
+    color: #b5b5b5;
+    font-size: 12px;
+  }
+
   span {
     margin-top: 10px;
     margin-bottom: 10px;

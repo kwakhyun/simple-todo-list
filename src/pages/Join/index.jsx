@@ -2,19 +2,19 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authAPI } from "../../server/api";
-import { StyledJoin } from "./styled";
+import { StyledAuth } from "../Login/styled";
 
 export const Join = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
 
-  const navigate = useNavigate();
-
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const confirmPasswordSpan = useRef();
+
+  const navigate = useNavigate();
 
   const signupData = {
     email: email,
@@ -27,9 +27,8 @@ export const Join = () => {
   const handleJoin = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      confirmPasswordSpan.current.focus();
-      confirmPasswordSpan.current.innerText = "비밀번호가 일치하지 않습니다.";
-      confirmPasswordSpan.current.style.color = "red";
+      confirmPasswordRef.current.focus();
+      confirmPasswordSpan.current.style.display = "block";
     } else {
       authAPI
         .signup(signupData)
@@ -49,10 +48,10 @@ export const Join = () => {
   };
 
   return (
-    <StyledJoin>
+    <StyledAuth>
+      <p>To-do list made by kwakhyun</p>
       <form onSubmit={(e) => handleJoin(e)}>
-        <h2>JOIN</h2>
-        <label>이메일</label>
+        <label>Email</label>
         <input
           type="text"
           value={email}
@@ -61,7 +60,7 @@ export const Join = () => {
           placeholder="이메일 입력"
           required
         />
-        <label>비밀번호</label>
+        <label>Password</label>
         <input
           type="password"
           value={password}
@@ -78,13 +77,16 @@ export const Join = () => {
           ref={confirmPasswordRef}
           required
         />
-        <span ref={confirmPasswordSpan}></span>
+        <div className="error-message" ref={confirmPasswordSpan}>
+          비밀번호가 일치하지 않습니다.
+        </div>
         {emailRegExp.test(email) && password.length >= 8 ? (
           <button type="submit">JOIN</button>
         ) : (
           <button disabled>JOIN</button>
         )}
       </form>
-    </StyledJoin>
+      <span onClick={() => navigate("/")}>로그인하기</span>
+    </StyledAuth>
   );
 };

@@ -1,4 +1,4 @@
-## To-do List React App
+## Simple To-do list
 <br>
 
 ### 프로젝트 소개

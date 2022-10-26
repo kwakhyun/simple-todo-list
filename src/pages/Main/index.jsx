@@ -41,7 +41,7 @@ export const Main = () => {
       </div>
 
       <div className="todo-list">
-        {todos.filter((v) => v.isCompleted === false).length > 0 && (
+        {todos.filter((todo) => todo.isCompleted === false).length > 0 && (
           <h2>Not done yet..</h2>
         )}
         {todos?.map((todo) => {
@@ -50,7 +50,7 @@ export const Main = () => {
           ) : null;
         })}
 
-        {todos.filter((v) => v.isCompleted === true).length > 0 && (
+        {todos.filter((todo) => todo.isCompleted === true).length > 0 && (
           <h2>Work done!</h2>
         )}
         {todos?.map((todo) => {

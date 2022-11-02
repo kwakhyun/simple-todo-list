@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { todoAPI } from "../../../server/api";
+import { todoAPI } from "../../api/api";
 import { AiFillCheckCircle, AiOutlineCheckCircle } from "react-icons/ai";
 import { StyledTodo } from "./styled";
 

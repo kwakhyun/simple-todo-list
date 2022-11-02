@@ -1,7 +1,7 @@
 //Style import
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authAPI } from "../../server/api";
+import { authAPI } from "../../api/api";
 import { StyledAuth } from "../Login/styled";
 
 export const Join = () => {

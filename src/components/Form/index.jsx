@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { todoAPI } from "../../../server/api";
+import { todoAPI } from "../../api/api";
 import { StyledTodoForm } from "./styled";
 
 export const TodoForm = ({ todos, setTodos }) => {

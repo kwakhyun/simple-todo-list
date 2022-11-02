@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { todoAPI } from "../../server/api";
-import { Todo } from "../../components/main/Todo";
-import { TodoForm } from "../../components/main/Form";
+import { todoAPI } from "../../api/api";
+import { Todo } from "../../components/Todo";
+import { TodoForm } from "../../components/Form";
 import { StyledMain } from "./styled";
 
 export const Main = () => {

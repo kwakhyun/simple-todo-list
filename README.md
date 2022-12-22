@@ -1,14 +1,9 @@
 ## Simple To-do list
 
-### 프로젝트 소개
 심플한 투두 리스트 프로젝트입니다.
 - [프로젝트 배포 링크](https://todo-list-omega-smoky.vercel.app/)
-- [Best Practice 링크](https://github.com/preonboarding-FE-6team/week1-1)
-<br>
 
-### 요구 사항
-
----
+## 🚀 기능 요구사항
 
 ### :: 1. 로그인 / 회원가입
 
@@ -55,10 +50,10 @@
 
 ---
 
-### 프로젝트 구조
+## 프로젝트 구조
 <img width="293" alt="스크린샷 2022-10-26 오후 7 26 59" src="https://user-images.githubusercontent.com/73919235/198084918-269f1673-10d5-4d6a-85b8-44b6b51c447f.png">
 
-### 코드 설명
+## 코드 설명
 #### api
 - instance.js : Axios 객체를 만들었으며, 인터셉터를 사용해 인증 토큰을 관리했습니다.
 - api.js : 앱에서 사용하는 API 요청을 한곳에 모아서 사용했습니다.
